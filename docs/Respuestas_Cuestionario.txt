@@ -1,0 +1,50 @@
+1) ¿Para qué se utiliza Docker?
+Respuesta: c) Contenerizar aplicaciones para que se ejecuten de forma consistente en distintos entornos
+
+2) En un archivo docker-compose.yml, ¿qué hace la etiqueta ports?
+Respuesta: b) Mapea los puertos del contenedor a los del host
+
+3) ¿Qué comando construye e inicia contenedores usando docker-compose?
+Respuesta: a) docker-compose up --build
+
+4) ¿Cuál de estas afirmaciones es VERDADERA?
+Respuesta: b) Docker Compose puede definir y ejecutar múltiples contenedores juntos.
+
+5) ¿Qué ventaja principal ofrece Docker al desarrollar aplicaciones?
+Respuesta: c) Garantiza que las aplicaciones funcionen igual en cualquier entorno
+
+
+ Verdadero o Falso
+
+1) Los contenedores Docker comparten el kernel de la máquina host.
+Verdadero
+
+2) Solo puedes ejecutar un contenedor a la vez usando Docker.
+Falso
+
+3) En un docker-compose.yml, la etiqueta depends_on asegura que un servicio se inicie antes que otro.
+Verdadero
+
+4) Los contenedores creados a partir de la misma imagen siempre tendrán los mismos datos dentro por defecto.
+Verdadero
+
+5) Nginx puede usarse en un contenedor Docker para servir archivos estáticos del frontend y hacer proxy inverso de peticiones a la API.
+Verdadero
+
+
+ Respuesta Corta
+
+1) ¿Cuál es la diferencia entre un contenedor y una imagen en Docker?
+Una imagen es una plantilla, un contenedor es esa imagen en ejecución.
+
+2) ¿Para qué se utilizan volúmenes en Docker?
+Para guardar datos que no se pierdan al borrar el contenedor.
+
+3) ¿Qué hace la instrucción EXPOSE en un Dockerfile?
+Muestra qué puerto se usará dentro del contenedor.
+
+4) Escribe un beneficio de usar Docker en tus proyectos.
+Que la app funcione igual en todas las compus.
+
+5) ¿Cuál es el propósito de usar Nginx en tu proyecto Docker?
+Para servir los archivos del frontend y pasar peticiones al backend.
