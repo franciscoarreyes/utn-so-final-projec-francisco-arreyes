@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <title>Estudiantes</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles_modern.css" />
   </head>
   <body>
     <h1>Lista de Estudiantes</h1>
     <button id="loadButton">Cargar Estudiantes</button>
+    
     <table id="studentsTable">
       <thead>
         <tr>
@@ -17,6 +18,63 @@
       </thead>
       <tbody></tbody>
     </table>
+    <div style="margin-top: 20px;">
+      <input type="text" id="nameInput" placeholder="Escribe tu nombre" />
+      <button id="greetButton">Saludarme</button>
+      <div id="greetMessage" style="margin-top:10px;"></div>
+    </div>
+    <div style="margin-top: 20px;">
+      <form id="addStudentForm">
+        <input type="text" id="studentNameInput" placeholder="Nombre del estudiante" required />
+        <button type="submit">Agregar Estudiante</button>
+      </form>
+      <div id="addStudentMessage" style="margin-top:10px;"></div>
+    </div>
+    <script>
+      document.getElementById('addStudentForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const nameInput = document.getElementById('studentNameInput');
+        const name = nameInput.value.trim();
+        const messageDiv = document.getElementById('addStudentMessage');
+        if (!name) {
+          messageDiv.textContent = 'Por favor, ingresa un nombre.';
+          return;
+        }
+        try {
+          const response = await fetch('/api/student', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name })
+          });
+          if (!response.ok) throw new Error('Error al agregar estudiante');
+          nameInput.value = '';
+          messageDiv.textContent = 'Estudiante agregado correctamente.';
+          if (typeof loadStudents === 'function') {
+            loadStudents();
+          } else {
+            document.getElementById('loadButton').click();
+          }
+        } catch (err) {
+          messageDiv.textContent = 'No se pudo agregar el estudiante.';
+        }
+      });
+    </script>
+    <script>
+      document.getElementById('greetButton').addEventListener('click', async function() {
+        const name = document.getElementById('nameInput').value;
+        if (!name) {
+          document.getElementById('greetMessage').textContent = 'Por favor, ingresa tu nombre.';
+          return;
+        }
+        try {
+          const response = await fetch(`/api/greet?name=${encodeURIComponent(name)}`);
+          const data = await response.json();
+          document.getElementById('greetMessage').textContent = data.message;
+        } catch (e) {
+          document.getElementById('greetMessage').textContent = 'Error al obtener el saludo.';
+        }
+      });
+    </script>
     <script src="script.js"></script>
   </body>
 </html>
